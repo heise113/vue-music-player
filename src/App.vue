@@ -1,26 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="wrapper">
+    <SongsList/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import SongsList from "@/components/SongsList"
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    SongsList
   }
 }
+
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss" scoped>
+  .wrapper {
+    height: 100%;
+    max-width: 375px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+</style>
+
+<style lang="scss">
+//
 </style>
