@@ -1,5 +1,5 @@
 <template>
-  <div class="item-wrapper">
+  <div class="item-wrapper" @click="$emit('selected_track', item)">
 <!--    <img :src="`../assets/images/track/${item.imageSrc}`" alt="#" class="item-wrapper__image">-->
     <img src="../assets/images/track/ya-svoboden.jpg" alt="#" class="item-wrapper__image">
     <div class="item-wrapper__name">
@@ -30,7 +30,7 @@ export default {
 
   .item-wrapper {
     display: flex;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 
     &__image {
       width: 50px;
@@ -46,10 +46,17 @@ export default {
         font-weight: 700;
         color: $gray;
         margin-bottom: 5px;
+        width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       &__artist {
-
+        width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
@@ -57,6 +64,7 @@ export default {
       align-self: center;
       font-weight: 500;
       color: $gray;
+      margin-left: 10px;
     }
   }
 
