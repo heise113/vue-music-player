@@ -137,6 +137,6 @@ export default createStore({
     getters: {
         getSongs(state) {
             return state.songs
-        }
+        },
     }
 })

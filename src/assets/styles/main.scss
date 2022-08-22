@@ -16,6 +16,12 @@ body {
   background-color: $blue;
 }
 
+button {
+  border: none;
+  background-color: $white;
+  cursor: pointer;
+}
+
 #app {
   display: flex;
   align-items: center;
