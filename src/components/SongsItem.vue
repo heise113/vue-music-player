@@ -31,6 +31,7 @@ export default {
   .item-wrapper {
     display: flex;
     margin-bottom: 20px;
+    cursor: pointer;
 
     &__image {
       width: 50px;

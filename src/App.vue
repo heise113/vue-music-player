@@ -1,19 +1,19 @@
 <template>
   <div class="wrapper">
-    <TestTest/>
-<!--    <SongsList/>-->
+<!--    <TestTest/>-->
+    <SongsList/>
   </div>
 </template>
 
 <script>
 
-// import SongsList from "@/components/SongsList"
-import TestTest from "@/components/TestTest"
+import SongsList from "@/components/SongsList"
+// import TestTest from "@/components/TestTest"
 
 export default {
   components: {
-    TestTest,
-    // SongsList
+    // TestTest,
+    SongsList
   },
 }
 
