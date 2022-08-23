@@ -1,13 +1,13 @@
 <template>
   <div class="item-wrapper" @click="$emit('selected_track', item)">
-<!--    <img :src="`../assets/images/track/${item.imageSrc}`" alt="#" class="item-wrapper__image">-->
-    <img src="../assets/images/track/ya-svoboden.jpg" alt="#" class="item-wrapper__image">
+    <img :src="require(`@/assets/images/track/${item.imageSrc}`)" alt="#" class="item-wrapper__image">
+<!--    <img src="../assets/images/track/ya-svoboden.jpg" alt="#" class="item-wrapper__image">-->
     <div class="item-wrapper__name">
-      <p class="item-wrapper__name__song">
-        {{ item.artistName }}
-      </p>
       <p class="item-wrapper__name__artist">
         {{ item.name }}
+      </p>
+      <p class="item-wrapper__name__song">
+        {{ item.artistName }}
       </p>
     </div>
     <div class="item-wrapper__time">
@@ -44,9 +44,6 @@ export default {
       flex-grow: 1;
 
       &__song {
-        font-weight: 700;
-        color: $gray;
-        margin-bottom: 5px;
         width: 200px;
         white-space: nowrap;
         overflow: hidden;
@@ -54,6 +51,9 @@ export default {
       }
 
       &__artist {
+        font-weight: 700;
+        color: $gray;
+        margin-bottom: 5px;
         width: 200px;
         white-space: nowrap;
         overflow: hidden;

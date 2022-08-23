@@ -2,9 +2,10 @@
   <div
       class="songs-list"
       :class="active_player ? 'songs-list_none-scroll' : null"
-      v-if="!active_player"
   >
-    <p class="songs-list__title">Еееее роцка!!!</p>
+    <div class="songs-list__title">
+      <p class="songs-list__title__text">Еееее роцка!!!</p>
+    </div>
     <div
         class="songs-list__list"
         v-for="item in $store.getters.getSongs"
@@ -23,6 +24,7 @@
   </div>
   <transition name="view-player">
     <Player
+        :track="temp_track"
         v-if="active_player"
         class="player"
     />
@@ -63,9 +65,12 @@ export default {
       this.temp_track = this.$store.getters.getSongs.find(item => item.id === id)
     },
     changePlayer() {
+      // this.active_player
+      //     ? (this.active_player = false, this.active_mini_player = true)
+      //     : (this.active_player = true, this.active_mini_player = false)
       this.active_player
-          ? (this.active_player = false, this.active_mini_player = true)
-          : (this.active_player = true, this.active_mini_player = false)
+          ? this.active_player = false
+          : this.active_player = true
     }
   }
 }
@@ -100,11 +105,17 @@ export default {
   }
 
   &__title {
-    font-weight: 500;
-    font-size: 20px;
-    text-align: center;
-    margin-bottom: 30px;
-    padding-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__text {
+      font-weight: 500;
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      padding-top: 15px;
+    }
   }
 
   &__list {
@@ -121,18 +132,19 @@ export default {
 }
 
 .player {
+  position: absolute;
   max-width: 375px;
   width: 100%;
   height: 70vh;
   border-radius: 10px;
   background-color: $white;
+  overflow: hidden;
 }
 
 .view-player {
   &-enter-from, &-leave-to {
+    align-self: flex-end;
     height: 0;
-    opacity: 0;
-    transform: scale(1, 0.1);
   }
   &-enter-active {
     transition: all 0.5s ease;

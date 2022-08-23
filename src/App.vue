@@ -21,12 +21,11 @@ export default {
 
 <style lang="scss" scoped>
   .wrapper {
+    position: relative;
     height: 70vh;
     max-width: 375px;
     width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
   }
 </style>
 
