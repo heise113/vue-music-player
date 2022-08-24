@@ -24,6 +24,7 @@
   </div>
   <transition name="view-player">
     <Player
+        @click="changePlayer"
         :track="temp_track"
         v-if="active_player"
         class="player"
@@ -33,7 +34,7 @@
 
 <script>
 import ItemSongs from "@/components/SongsItem"
-import Player from "@/components/Player"
+import Player from "@/components/BigPlayer"
 import MiniPlayer from "@/components/MiniPlayer"
 
 export default {
@@ -55,14 +56,17 @@ export default {
       this.active_mini_player = true
     },
     prevTrack(id) {
+      console.log('sfsdfsdfsdfsdfsdf')
       --id
       id < this.$store.getters.getSongs[0].id ? id = this.$store.getters.getSongs.length - 1 : null
       this.temp_track = this.$store.getters.getSongs.find(item => item.id === id)
+      console.log(this.temp_track)
     },
     nextTrack(id) {
       ++id
       id > this.$store.getters.getSongs[this.$store.getters.getSongs.length - 1].id ? id = 1 : null
       this.temp_track = this.$store.getters.getSongs.find(item => item.id === id)
+      console.log(this.temp_track)
     },
     changePlayer() {
       // this.active_player
@@ -142,11 +146,18 @@ export default {
 }
 
 .view-player {
-  &-enter-from, &-leave-to {
+  &-enter-from, {
     align-self: flex-end;
     height: 0;
+    padding: 0;
   }
-  &-enter-active {
+  &-leave-to {
+    bottom: 0;
+    height: 0;
+    padding: 0;
+
+  }
+  &-enter-active, &-leave-active {
     transition: all 0.5s ease;
   }
 }
