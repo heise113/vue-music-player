@@ -13,13 +13,14 @@
 
     </div>
     <div class="wrapper-player__buttons">
-      <button class="wrapper-player__buttons__prev" @click.stop>
+      <button class="wrapper-player__buttons__prev" @click.stop="prev">
         <fa icon="fa-solid fa-backward-step"/>
       </button>
-      <button class="wrapper-player__buttons__play" @click.stop>
-        <fa icon="fa-solid fa-play" class="wrapper-player__playing-track__buttons__pause__icon"/>
+      <button class="wrapper-player__buttons__play" @click.stop="play">
+        <fa v-if="!$store.state.playing" icon="fa-solid fa-play" class="wrapper-player__playing-track__buttons__pause__icon"/>
+        <fa v-if="$store.state.playing" icon="fa-solid fa-pause" class="wrapper-player__playing-track__buttons__pause__icon"/>
       </button>
-      <button class="wrapper-player__buttons__next" @click.stop>
+      <button class="wrapper-player__buttons__next" @click.stop="next">
         <fa icon="fa-solid fa-forward-step"/>
       </button>
     </div>
@@ -27,15 +28,12 @@
 </template>
 
 <script>
+import PlayerControl from "@/mixins/PlayerControl";
+
 export default {
-  props: {
-    track: Object
-  },
-  data() {
-    return {
-      playing: false
-    }
-  }
+  mixins: [
+      PlayerControl
+  ]
 }
 </script>
 

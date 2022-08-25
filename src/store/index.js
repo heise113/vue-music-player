@@ -130,7 +130,8 @@ export default createStore({
                 songSrc: require('@/assets/songs/ya-svoboden.mp3')
             },
         ],
-        player: new Audio()
+        player: new Audio(),
+        playing: true,
     },
     mutations:{
 

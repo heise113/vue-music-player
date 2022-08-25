@@ -1,8 +1,7 @@
 <template>
   <div class="wrapper-player" @click="$emit('changePlayer')">
-<!--    <audio :src="require(`@/assets/songs/${track.songSrc}`)" preload="auto" id="mini-player" autoplay ref="audioPlayer"/>-->
-    <div class="wrapper-player__time-line">
-
+    <div class="wrapper-player__timeline" id="timeline">
+      <div class="wrapper-player__timeline__line" id="line"></div>
     </div>
     <div class="wrapper-player__playing-track">
       <div class="wrapper-player__playing-track__track">
@@ -22,8 +21,8 @@
           <fa icon="fa-solid fa-backward" class="wrapper-player__playing-track__buttons__prev__icon"/>
         </button>
         <button class="wrapper-player__playing-track__buttons__pause" @click.stop="play">
-          <fa v-if="playing" icon="fa-solid fa-pause" class="wrapper-player__playing-track__buttons__pause__icon"/>
-          <fa v-if="!playing" icon="fa-solid fa-play" class="wrapper-player__playing-track__buttons__pause__icon"/>
+          <fa v-if="$store.state.playing" icon="fa-solid fa-pause" class="wrapper-player__playing-track__buttons__pause__icon"/>
+          <fa v-if="!$store.state.playing" icon="fa-solid fa-play" class="wrapper-player__playing-track__buttons__pause__icon"/>
         </button>
         <button class="wrapper-player__playing-track__buttons__next" @click.stop="next">
           <fa icon="fa-solid fa-forward" class="wrapper-player__playing-track__buttons__next__icon"/>
@@ -41,50 +40,6 @@ export default {
   mixins: [
       PlayerControl
   ],
-  // created() {
-  //   this.$store.state.player.src = this.track.songSrc
-  //   this.$store.state.player.play()
-  // },
-  // props: {
-  //   track: {
-  //     type: Object
-  //   }
-  // },
-  // data() {
-  //   return {
-  //     playing: true,
-  //   }
-  // },
-  // watch: {
-  //   track() {
-  //     this.playing = true
-  //     this.$store.state.player.src = this.track.songSrc
-  //     this.$store.state.player.play()
-  //   }
-  // },
-  // methods: {
-  //   prev() {
-  //     this.$emit('prevTrack', this.track.id)
-  //     this.playing = true
-  //   },
-  //   next() {
-  //     this.$emit('nextTrack', this.track.id)
-  //     this.playing = true
-  //   },
-  //   play() {
-  //     this.playing = !this.playing
-  //     // this.$store.state.player.src = this.track.songSrc
-  //     // this.$store.state.player.play()
-  //     this.playing === false ? this.$store.state.player.pause() : this.$store.state.player.play();
-  //     // this.playing === false ? this.$refs.audioPlayer.pause() : this.$refs.audioPlayer.play();
-  //     // let pl = document.getElementById('mini-player')
-  //     // // pl.addEventListener('timeupdate', () => console.log(pl.currentTime.toFixed(0)))
-  //     // pl.addEventListener('timeupdate', () => console.log((pl.currentTime / pl.duration) * 100))
-  //     //
-  //     // // console.dir((pl.currentTime / pl.duration) * 100)
-  //
-  //   }
-  // }
 }
 
 </script>
@@ -92,6 +47,7 @@ export default {
 <style scoped lang="scss">
 
 .wrapper-player {
+  position: relative;
   background-color: $lightgray;
   height: 80px;
   display: flex;
@@ -100,6 +56,22 @@ export default {
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
+
+  &__timeline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+
+
+    &__line {
+      background-color: orange;
+      height: 100%;
+      width: 0;
+    }
+  }
 
   &__playing-track {
     display: flex;

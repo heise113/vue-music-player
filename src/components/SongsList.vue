@@ -24,6 +24,8 @@
   </div>
   <transition name="view-player">
     <Player
+        @prevTrack="prevTrack"
+        @nextTrack="nextTrack"
         @click="changePlayer"
         :track="temp_track"
         v-if="active_player"
@@ -56,22 +58,16 @@ export default {
       this.active_mini_player = true
     },
     prevTrack(id) {
-      console.log('sfsdfsdfsdfsdfsdf')
       --id
       id < this.$store.getters.getSongs[0].id ? id = this.$store.getters.getSongs.length - 1 : null
       this.temp_track = this.$store.getters.getSongs.find(item => item.id === id)
-      console.log(this.temp_track)
     },
     nextTrack(id) {
       ++id
       id > this.$store.getters.getSongs[this.$store.getters.getSongs.length - 1].id ? id = 1 : null
       this.temp_track = this.$store.getters.getSongs.find(item => item.id === id)
-      console.log(this.temp_track)
     },
     changePlayer() {
-      // this.active_player
-      //     ? (this.active_player = false, this.active_mini_player = true)
-      //     : (this.active_player = true, this.active_mini_player = false)
       this.active_player
           ? this.active_player = false
           : this.active_player = true
