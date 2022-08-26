@@ -132,6 +132,9 @@ export default createStore({
         ],
         player: new Audio(),
         playing: true,
+        active_big_player: false,
+        active_mini_player: false,
+        vremeni_proshlo: 0,
     },
     mutations:{
 

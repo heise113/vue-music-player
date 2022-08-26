@@ -9,8 +9,12 @@
         {{ track.artistName }}
       </p>
     </div>
-    <div class="wrapper-player__timeline">
-
+    <div class="wrapper-player__timeline" id="big-timeline" @click="moveTimeLine">
+      <div class="wrapper-player__timeline__line" id="big-line"></div>
+    </div>
+    <div class="wrapper-player__timer">
+      <p class="wrapper-player__timer__proshlo">{{ parseTime($store.state.vremeni_proshlo) }}</p>
+      <p class="wrapper-player__timer__alltime">{{ parseTime($store.state.player.duration) }}</p>
     </div>
     <div class="wrapper-player__buttons">
       <button class="wrapper-player__buttons__prev" @click.stop="prev">
@@ -41,6 +45,35 @@ export default {
 
 .wrapper-player {
   padding: 20px;
+
+  &__timeline {
+    height: 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 270px;
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: 30px;
+
+
+    &__line {
+      background-color: orange;
+      height: 100%;
+      width: 0;
+      border-radius: 30px;
+    }
+  }
+
+  &__timer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 270px;
+    margin: 0 auto;
+
+    & p {
+      font-weight: 500;
+    }
+  }
 
   &__image {
     display: block;

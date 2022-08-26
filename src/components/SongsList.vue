@@ -14,7 +14,7 @@
       <ItemSongs :item="item" @selected_track="playTrack"/>
     </div>
     <MiniPlayer
-        v-if="active_mini_player"
+        v-if="$store.state.active_mini_player"
         :track="temp_track"
         class="songs-list__mini-player"
         @prevTrack="prevTrack"
@@ -24,11 +24,11 @@
   </div>
   <transition name="view-player">
     <Player
+        v-if="$store.state.active_big_player"
         @prevTrack="prevTrack"
         @nextTrack="nextTrack"
         @click="changePlayer"
         :track="temp_track"
-        v-if="active_player"
         class="player"
     />
   </transition>
@@ -55,7 +55,7 @@ export default {
   methods: {
     playTrack(track) {
       this.temp_track = track
-      this.active_mini_player = true
+      this.$store.state.active_mini_player = true
     },
     prevTrack(id) {
       --id
@@ -68,9 +68,9 @@ export default {
       this.temp_track = this.$store.getters.getSongs.find(item => item.id === id)
     },
     changePlayer() {
-      this.active_player
-          ? this.active_player = false
-          : this.active_player = true
+      this.$store.state.active_big_player
+          ? this.$store.state.active_big_player = false
+          : this.$store.state.active_big_player = true
     }
   }
 }
