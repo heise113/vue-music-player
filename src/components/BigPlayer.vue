@@ -9,7 +9,7 @@
         {{ track.artistName }}
       </p>
     </div>
-    <div class="wrapper-player__timeline" id="big-timeline" @click="moveTimeLine">
+    <div class="wrapper-player__timeline" id="big-timeline" @click.stop="moveTimeLine">
       <div class="wrapper-player__timeline__line" id="big-line"></div>
     </div>
     <div class="wrapper-player__timer">
@@ -47,6 +47,7 @@ export default {
   padding: 20px;
 
   &__timeline {
+    cursor: pointer;
     height: 8px;
     background-color: rgba(0, 0, 0, 0.2);
     width: 270px;

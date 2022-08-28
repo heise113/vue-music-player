@@ -4,7 +4,6 @@ export default {
             ? (this.$store.state.player.src = this.track.songSrc, this.$store.state.player.play())
             : null
         this.$store.state.player.addEventListener('timeupdate', () => {
-            console.log(this.$store.state.player.duration)
             this.percent = (this.$store.state.player.currentTime / this.$store.state.player.duration) * 100
             if (this.$store.state.active_mini_player) {
                 this.length = document.getElementById('timeline').offsetWidth
@@ -64,9 +63,9 @@ export default {
         moveTimeLine(e) {
             let target = document.getElementById('big-timeline').getBoundingClientRect();
             let x = e.clientX - target.left;
-            console.log(x)
             document.getElementById('big-line').style.width = `${x}px`
-            this.$store.state.player.currentTime = this.$store.state.player.duration / x
+            let temp_percent = x / this.length2 * 100
+            this.$store.state.player.currentTime = this.$store.state.player.duration / 100 * temp_percent
         }
     }
 }

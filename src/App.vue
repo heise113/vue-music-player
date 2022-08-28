@@ -1,20 +1,13 @@
 <template>
   <div class="wrapper">
-<!--    <TestTest/>-->
-    <SongsList/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 
-import SongsList from "@/components/SongsList"
-// import TestTest from "@/components/TestTest"
-
 export default {
-  components: {
-    // TestTest,
-    SongsList
-  },
+
 }
 
 </script>
