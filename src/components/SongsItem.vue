@@ -1,7 +1,6 @@
 <template>
   <div class="item-wrapper" @click="$emit('selected_track', item)">
     <img :src="require(`@/assets/images/track/${item.imageSrc}`)" alt="#" class="item-wrapper__image">
-<!--    <img src="../assets/images/track/ya-svoboden.jpg" alt="#" class="item-wrapper__image">-->
     <div class="item-wrapper__name">
       <p class="item-wrapper__name__artist">
         {{ item.name }}
